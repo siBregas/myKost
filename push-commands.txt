@@ -1,0 +1,39 @@
+# COPY-PASTE COMMANDS UNTUK GITHUB PUSH
+
+# ========================================
+# STEP 1: BUAT REPO DI GITHUB.COM DULU!
+# ========================================
+# 1. Buka github.com → Login
+# 2. Klik "New" → Repository name: my-kost-app
+# 3. Public → Create repository
+# 4. COPY URL yang muncul (contoh: https://github.com/username/my-kost-app.git)
+
+# ========================================  
+# STEP 2: JALANKAN COMMANDS INI DI POWERSHELL
+# ========================================
+# Buka PowerShell di folder: c:\web\solo\KOS\my-kost-app
+
+# Commands:
+git init
+git add .
+git commit -m "Initial commit - Aplikasi Kost dengan Google Sheets"
+git branch -M main
+git remote add origin https://github.com/USERNAME/my-kost-app.git
+git push -u origin main
+
+# ⚠️ GANTI "USERNAME" dengan username GitHub Anda!
+
+# ========================================
+# JIKA ADA ERROR AUTHENTICATION:
+# ========================================
+# 1. GitHub → Settings → Developer settings 
+# 2. Personal access tokens → Generate new token
+# 3. Pilih scope: repo
+# 4. Gunakan token sebagai password saat diminta
+
+# ========================================
+# UNTUK UPDATE SELANJUTNYA:
+# ========================================
+git add .
+git commit -m "Update aplikasi"
+git push

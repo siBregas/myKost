@@ -1,0 +1,9 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "installCommand": "npm install",
+  "env": {
+    "NEXT_PUBLIC_GOOGLE_SHEETS_ID": "1dpt5uCyBfpfBLh0w-8uVC9LgU4ihKErU7babxc_p23Y",
+    "NEXT_PUBLIC_GOOGLE_SHEETS_RANGE": "Sheet1!A:E"
+  }
+}

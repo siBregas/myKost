@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏠 Aplikasi Manajemen Kost - Google Sheets Only
 
-## Getting Started
+Aplikasi manajemen ketersediaan kamar kost yang menggunakan **Google Sheets sebagai database**. Tidak memerlukan Supabase atau database lainnya.
 
-First, run the development server:
+## 🚀 Quick Start
 
 ```bash
+# Install dependencies
+npm install
+
+# Jalankan development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Buka [http://localhost:3000](http://localhost:3000) untuk melihat aplikasi.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📊 Setup Google Sheets
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 1. Format Data di Google Sheets
+**ID Sheet Anda:** `1dpt5uCyBfpfBLh0w-8uVC9LgU4ihKErU7babxc_p23Y`
 
-## Learn More
+| A (room_id) | B (start_date) | C (end_date) | D (status) | E (note) |
+|-------------|----------------|--------------|------------|----------|
+| 1           | 2025-09-01     | 2025-09-10   | terisi     | Penghuni lama |
+| 1           | 2025-09-15     | 2025-09-20   | booking    | Rosalia DP 200rb |
+| 2           | 2025-09-11     | 2025-09-30   | booking    | Yasmin DP |
 
-To learn more about Next.js, take a look at the following resources:
+### 2. Pastikan Google Sheets Public
+```
+Share → "Anyone with the link can view"
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎨 Fitur Aplikasi
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### ✅ **Calendar View**
+- **🔴 Merah + "T"** = Kamar terisi
+- **⚫ Abu-abu + "B"** = Kamar booking  
+- **⚪ Putih** = Kamar kosong
+- Navigation bulan dengan tombol Prev/Next
 
-## Deploy on Vercel
+### ✅ **Detail Kamar** 
+- URL: `/kost/[nomor]` (contoh: `/kost/1`)
+- Gallery foto + calendar ketersediaan
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### ✅ **Auto Fallback**
+Jika Google Sheets tidak bisa diakses, otomatis menggunakan sample data.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## ⚙️ Konfigurasi
+
+File `.env.local` sudah dikonfigurasi:
+```bash
+NEXT_PUBLIC_GOOGLE_SHEETS_ID=1dpt5uCyBfpfBLh0w-8uVC9LgU4ihKErU7babxc_p23Y
+NEXT_PUBLIC_GOOGLE_SHEETS_RANGE=Sheet1!A:E
+NEXT_PUBLIC_GOOGLE_SHEETS_API_KEY=  # Kosong = public access
+```
+
+## 🔧 Update Data
+
+1. **Edit Google Sheets** langsung
+2. **Refresh browser** atau klik "🔄 Reload"  
+3. **Perubahan langsung terlihat**
+
+## 🐛 Troubleshooting
+
+### Tabel Masih Putih?
+1. ✅ **Cek Google Sheets public**
+2. ✅ **Buka Console (F12)** untuk melihat error
+3. ✅ **Test CSV URL:**
+   ```
+   https://docs.google.com/spreadsheets/d/1dpt5uCyBfpfBLh0w-8uVC9LgU4ihKErU7babxc_p23Y/export?format=csv
+   ```
+4. ✅ **Format data sesuai contoh**
+
+## 📁 Struktur
+
+```
+├── app/page.tsx              # Halaman utama
+├── app/kost/[id]/page.tsx    # Detail kamar  
+├── components/Table.tsx      # Calendar component
+├── components/Gallery.tsx    # Foto kamar
+└── .env.local               # Konfigurasi
+```
+
+**✅ Aplikasi siap digunakan tanpa database external!**
